@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        let pro_tb = "";
+        let isAgain = false;
+        let isShow = false;
+
+        function toShowTables() {
+            isShow = !isShow;
+            if (isShow) {
+                document.getElementById("product_table").style.display = "block";
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function() {
+                    document.getElementById("product_table").innerHTML =
+                        this.responseText;
+                }
+                xhttp.open("GET", "product.php");
+                xhttp.send();
+            } else {
+                document.getElementById('product_table').style.display = "none";
+            }
+        }
+    </script>
+
+    <style>
+        td {
+            border: 2px solid;
+            text-align: center;
+        }
+        
+        #content {
+            display: flex;
+            justify-content: center;
+        }
+        
+        th {
+            text-align: center;
+            height: 50px;
+            background-color: #D4A373;
+            color: #FEFAE0;
+            border: 2px solid;
+            border-color: black;
+        }
+        
+        table {
+            width: 800px;
+            font-size: large;
+            font-family: Arial;
+            border-collapse: collapse;
+            border-width: 2px;
+        }
+        
+        .button {
+            background-color: #CCD5AE;
+            /* Green */
+            border: none;
+            border-radius: 10px;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>My Product</h1>
+
+    <button type="button" class="button" onclick="toShowTables()">
+        Show / Hide table
+    </button>
+    <div id="content">
+        <div id="product_table"></div>
+    </div>
+</body>
+
+</html>
